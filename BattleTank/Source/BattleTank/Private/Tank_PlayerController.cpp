@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Tank_PlayerController.h"
+#include "Tank.h"
 #include "Engine/World.h"
 #include "BattleTank.h"
 
@@ -23,7 +24,6 @@ void ATank_PlayerController::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	AimTowardsCrosshair();
-	UE_LOG(LogTemp, Error, TEXT("PlayerController Ticking..."));
 }
 // Tick
 	// Super
