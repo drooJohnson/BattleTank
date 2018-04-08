@@ -61,15 +61,14 @@ bool ATank_PlayerController::GetSightRayHitLocation(FVector& HitLocation) const
 	{
 		GetLookVectorHitLocation(LookDirection, HitLocation);
 	}
-	HitLocation = FVector(1.0);
-	return false;
+	return true;
 }
 
 bool ATank_PlayerController::GetLookVectorHitLocation(FVector LookDirection, FVector& HitLocation) const
 {
 	FHitResult HitResult;
 	auto StartLocation = PlayerCameraManager->GetCameraLocation();
-	auto EndLocation = StartLocation * (LookDirection * LineTraceRange);
+	auto EndLocation = StartLocation + (LookDirection * LineTraceRange);
 	if (GetWorld()->LineTraceSingleByChannel(
 		HitResult,
 		StartLocation,
@@ -80,6 +79,7 @@ bool ATank_PlayerController::GetLookVectorHitLocation(FVector LookDirection, FVe
 		HitLocation = HitResult.Location;
 		return true;
 	}
+	HitLocation = FVector(0);
 	return false; // Line trace didn't succeed
 }
 
